@@ -6,6 +6,12 @@ get '/' do
   erb :index, locals: { items: Feedback.ordered }
 end
 
+post '/delete' do
+  id = params.fetch('id')
+  Feedback.find(id).destroy!
+  redirect to('/')
+end
+
 post '/feedback' do
   content_type('application/json')
   hash = JSON.parse(request.body.read)
