@@ -1,0 +1,16 @@
+<article class="media">
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <strong><%= item.author %></strong> | <small><%= item.created_at.in_time_zone('Kaliningrad').strftime('%H:%M:%S %d-%m-%Y %Z') %></small>
+        <br>
+        <%= item.text %>
+        <br>
+        <small><i><%= item.sysinfo %></i></small>
+      </p>
+    </div>
+  </div>
+  <div class="media-right">
+    <button class="has-background-danger delete"></button>
+  </div>
+</article>

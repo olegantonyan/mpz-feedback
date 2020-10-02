@@ -1,5 +1,7 @@
-<ul>
-  <% items.each do |i| %>
-    <li><%= i.text %></li>
-  <% end %>
-</ul>
+<h1 class="title">
+  Feedbacks
+</h1>
+
+<% items.each do |i| %>
+  <%= erb :_item, layout: false, locals: { item: i } %>
+<% end %>
