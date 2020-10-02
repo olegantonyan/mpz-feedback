@@ -1,1 +1,5 @@
-<h1> <%= name %> </h1>
+<ul>
+  <% items.each do |i| %>
+    <li><%= i.text %></li>
+  <% end %>
+</ul>
