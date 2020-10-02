@@ -4,6 +4,7 @@ require_relative 'models/feedback'
 
 LOGIN = ENV.fetch('LOGIN')
 PASSWORD = ENV.fetch('PASSWORD')
+API_TOKEN = ENV.fetch('API_TOKEN')
 
 helpers do
   def protected!
@@ -31,6 +32,7 @@ post '/delete' do
 end
 
 post '/api/feedback' do
+  halt 401 unless request.env['HTTP_APIKEY'] == API_TOKEN
   content_type('application/json')
   hash = JSON.parse(request.body.read)
   Feedback.create!(author: hash.fetch('author', ''), text: hash.fetch('text'), sysinfo: hash.fetch('sysinfo', ''))
