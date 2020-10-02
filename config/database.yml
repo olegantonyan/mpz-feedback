@@ -6,10 +6,4 @@ development:
   username: app
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  pool: 4
-  host: <%= ENV['DATABASE_HOST'] %>
-  database: <%= ENV['DATABASE_NAME'] %>
-  username: <%= ENV['DATABASE_USER'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  url: ENV['DATABASE_URL']
