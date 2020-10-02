@@ -3,7 +3,7 @@ require 'sinatra/activerecord'
 
 class App < Sinatra::Base
   get '/' do
-    erb :index, locals: { name: 'Hello!'}
+    erb :index, locals: { name: 'Hello world'}
   end
 
   post '/feedback' do
