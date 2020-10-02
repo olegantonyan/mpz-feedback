@@ -12,7 +12,7 @@ post '/delete' do
   redirect to('/')
 end
 
-post '/feedback' do
+post '/api/feedback' do
   content_type('application/json')
   hash = JSON.parse(request.body.read)
   Feedback.create!(author: hash.fetch('author', ''), text: hash.fetch('text'), sysinfo: hash.fetch('sysinfo', ''))
