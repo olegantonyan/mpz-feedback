@@ -1,9 +1,0 @@
-development:
-  adapter: postgresql
-  encoding: unicode
-  database: mpz_feedback_development
-  pool: 2
-  username: app
-
-production:
-  url: <%= ENV['DATABASE_URL'] || 'postgres://localhost/' %>
