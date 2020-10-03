@@ -1,10 +1,18 @@
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'rack/attack'
+require 'redis-store'
 require_relative 'models/feedback'
 
 LOGIN = ENV.fetch('LOGIN')
 PASSWORD = ENV.fetch('PASSWORD')
 API_TOKEN = ENV.fetch('API_TOKEN')
+
+use Rack::Attack
+Rack::Attack.cache.store = Redis::Store.new(url: ENV.fetch('REDIS_URL', 'redis://localhost:6379/0'))
+Rack::Attack.throttle('req/ip', limit: 100, period: 30.minutes) do |req|
+  req.ip
+end
 
 helpers do
   def protected!
