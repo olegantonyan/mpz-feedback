@@ -10,6 +10,7 @@ class Notification
     Telegram::Bot::Client.run(telegram_api_key) do |bot|
       bot.api.send_message(chat_id: telegram_chat_id , text: text)
     end
+    puts "telegram message sent"
   rescue StandardError => e
     puts "telegram bot error: #{e}"
   end
