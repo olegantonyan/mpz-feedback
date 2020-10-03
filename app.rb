@@ -73,7 +73,7 @@ post '/api/feedback' do
   Notification.new(telegram_api_key: settings.telegram_api_key, telegram_chat_id: settings.telegram_chat_id).send_message(hash.fetch('text'))
   201
 rescue StandardError => e
-  puts "request error: #{e.message}"
+  puts "api request error: #{e.message}"
   puts e.backtrace
   [422, JSON.generate(error: e.message)]
 end
