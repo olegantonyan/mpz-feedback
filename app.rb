@@ -4,6 +4,7 @@ require 'rack/attack'
 require 'redis-store'
 require_relative 'models/feedback'
 require_relative 'config'
+require_relative 'models/notification'
 
 config = Config.new
 
@@ -13,6 +14,8 @@ set :password, config.get('PASSWORD', '1234')
 set :api_token, config.get('API_TOKEN', '1234')
 set :cache_store, Redis::Store.new(url: config.get('REDIS_URL', 'redis://localhost:6379'))
 set :database, { url: config.get('DATABASE_URL', 'postgres://app@localhost/mpz_feedback_development') }
+set :telegram_api_key, config.get('TELEGRAM_API_KEY', '')
+set :telegram_chat_id, config.get('TELEGRAM_CHAT_ID', '')
 
 use Rack::Attack
 Rack::Attack.cache.store = settings.cache_store
@@ -67,6 +70,7 @@ post '/api/feedback' do
   content_type('application/json')
   hash = JSON.parse(request.body.read)
   Feedback.create!(author: hash.fetch('author', ''), text: hash.fetch('text'), sysinfo: hash.fetch('sysinfo', ''))
+  Notification.new(telegram_api_key: settings.telegram_api_key, telegram_chat_id: settings.telegram_chat_id).send_message(hash.fetch('text'))
   201
 rescue StandardError => e
   [422, JSON.generate(error: e.message)]
