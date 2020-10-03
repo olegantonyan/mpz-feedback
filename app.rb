@@ -24,12 +24,21 @@ helpers do
   def protected!
     return if authorized?
     headers['WWW-Authenticate'] = 'Basic realm="Restricted Area"'
-    halt 401, "Not authorized\n"
+    halt 401, 'Unauthorized'
   end
 
   def authorized?
     @auth ||= Rack::Auth::Basic::Request.new(request.env)
     @auth.provided? && @auth.basic? && @auth.credentials && @auth.credentials == [settings.login, settings.password]
+  end
+
+  def api_protected!
+    return if api_authorized?
+    halt 401
+  end
+
+  def api_authorized?
+    request.env['HTTP_APIKEY'] == settings.api_token
   end
 end
 
@@ -46,7 +55,7 @@ post '/delete' do
 end
 
 post '/api/feedback' do
-  halt 401 unless request.env['HTTP_APIKEY'] == settings.api_token
+  api_protected!
   content_type('application/json')
   hash = JSON.parse(request.body.read)
   Feedback.create!(author: hash.fetch('author', ''), text: hash.fetch('text'), sysinfo: hash.fetch('sysinfo', ''))
