@@ -3,7 +3,7 @@ require 'sinatra/activerecord'
 require 'rack/attack'
 require 'redis-store'
 require_relative 'models/feedback'
-require_relative 'config'
+require_relative 'models/config'
 require_relative 'models/notification'
 
 config = Config.new
