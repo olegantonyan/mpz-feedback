@@ -9,7 +9,7 @@ class Config
     enviroment == :development
   end
 
-  def get(key, default)
-    ENV.fetch(key) { |k| development? ? default : (raise MissingKey, "please provide '#{k}' enviroment variable") }
+  def get(key, default_in_development = nil)
+    ENV.fetch(key) { |k| development? ? default_in_development : (raise MissingKey, "please provide '#{k}' enviroment variable") }
   end
 end

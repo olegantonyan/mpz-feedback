@@ -14,8 +14,8 @@ set :password, config.get('PASSWORD', '1234')
 set :api_token, config.get('API_TOKEN', '1234')
 set :cache_store, Redis::Store.new(url: config.get('REDIS_URL', 'redis://localhost:6379'))
 set :database, { url: config.get('DATABASE_URL', 'postgres://app@localhost/mpz_feedback_development') }
-set :telegram_api_key, config.get('TELEGRAM_API_KEY', '')
-set :telegram_chat_id, config.get('TELEGRAM_CHAT_ID', '')
+set :telegram_api_key, config.get('TELEGRAM_API_KEY')
+set :telegram_chat_id, config.get('TELEGRAM_CHAT_ID')
 
 use Rack::Attack
 Rack::Attack.cache.store = settings.cache_store
