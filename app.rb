@@ -21,6 +21,14 @@ Rack::Attack.throttle('req/ip', limit: 100, period: 30.minutes) do |req|
 end
 
 helpers do
+  def h(text)
+    Rack::Utils.escape_html(text)
+  end
+
+  def hattr(text)
+    Rack::Utils.escape_path(text)
+  end
+
   def protected!
     return if authorized?
     headers['WWW-Authenticate'] = 'Basic realm="Restricted Area"'

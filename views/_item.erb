@@ -2,11 +2,11 @@
   <div class="media-content">
     <div class="content">
       <p>
-        <strong><%= Rack::Utils.escape_html(item.author) %></strong> | <small><%= item.created_at.in_time_zone('Kaliningrad').strftime('%H:%M:%S %d-%m-%Y %Z') %></small>
+        <strong><%= h(item.author) %></strong> | <small><%= item.created_at.in_time_zone('Kaliningrad').strftime('%H:%M:%S %d-%m-%Y %Z') %></small>
         <br>
-        <%= Rack::Utils.escape_html(item.text) %>
+        <%= h(item.text) %>
         <br>
-        <small><i><%= Rack::Utils.escape_html(item.sysinfo) %></i></small>
+        <small><i><%= h(item.sysinfo) %></i></small>
       </p>
     </div>
   </div>
