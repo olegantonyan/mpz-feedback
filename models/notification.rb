@@ -9,9 +9,9 @@ class Notification
   def send_message(text)
     return if telegram_api_key.nil? || telegram_api_key.empty? || telegram_chat_id.nil? || telegram_chat_id.empty?
     Telegram::Bot::Client.run(telegram_api_key) do |bot|
-      bot.api.send_message(chat_id: telegram_chat_id , text: text)
+      bot.api.send_message(chat_id: telegram_chat_id, text: text)
     end
-    puts "telegram message sent"
+    puts 'telegram message sent'
   rescue StandardError => e
     puts "telegram bot error: #{e}"
   end
