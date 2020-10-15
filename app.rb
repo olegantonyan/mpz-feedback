@@ -69,8 +69,8 @@ post '/api/feedback' do
   api_protected!
   content_type('application/json')
   hash = JSON.parse(request.body.read)
-  Feedback.create!(author: hash.fetch('author', ''), text: hash.fetch('text'), sysinfo: hash.fetch('sysinfo', ''))
-  Notification.new(telegram_api_key: settings.telegram_api_key, telegram_chat_id: settings.telegram_chat_id).send_message(hash.fetch('text'))
+  fb = Feedback.create!(author: hash.fetch('author', ''), text: hash.fetch('text'), sysinfo: hash.fetch('sysinfo', ''))
+  Notification.new(telegram_api_key: settings.telegram_api_key, telegram_chat_id: settings.telegram_chat_id).send_message(fb.to_s)
   201
 rescue StandardError => e
   puts "api request error: #{e.message}"

@@ -6,4 +6,8 @@ class Feedback < ActiveRecord::Base
   validates :sysinfo, length: { maximum: 4096 }
 
   scope :ordered, -> { order(created_at: :desc) }
+
+  def to_s
+    author.empty? ? text : "#{author}: #{text}"
+  end
 end
