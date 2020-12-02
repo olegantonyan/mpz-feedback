@@ -35,7 +35,7 @@ GEM
       ruby2_keywords (~> 0.0.1)
     nio4r (2.5.4)
     pg (1.2.3)
-    puma (5.0.4)
+    puma (5.1.0)
       nio4r (~> 2.0)
     rack (2.2.3)
     rack-attack (6.3.1)
@@ -68,7 +68,7 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
-    zeitwerk (2.4.1)
+    zeitwerk (2.4.2)
 
 PLATFORMS
   ruby
