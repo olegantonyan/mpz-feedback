@@ -50,7 +50,7 @@ GEM
       ruby2_keywords (~> 0.0.1)
     nio4r (2.5.8)
     pg (1.2.3)
-    puma (5.5.0)
+    puma (5.5.2)
       nio4r (~> 2.0)
     rack (2.2.3)
     rack-attack (6.5.0)
@@ -58,7 +58,7 @@ GEM
     rack-protection (2.1.0)
       rack
     rake (13.0.6)
-    redis (4.4.0)
+    redis (4.5.1)
     redis-store (1.9.0)
       redis (>= 4, < 5)
     ruby2_keywords (0.0.5)
@@ -82,7 +82,7 @@ GEM
       axiom-types (~> 0.1)
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
-    zeitwerk (2.4.2)
+    zeitwerk (2.5.1)
 
 PLATFORMS
   ruby
