@@ -11,4 +11,4 @@ gem 'telegram-bot-ruby'
 gem 'puma'
 
 
-gem 'faraday', '< 2' # otherwise telegram bot doesn't work
+#gem 'faraday', '< 2' # otherwise telegram bot doesn't work
